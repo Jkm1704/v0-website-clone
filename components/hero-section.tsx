@@ -9,15 +9,15 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-arcade-night via-arcade-blue to-arcade-night">
       <ArcadeStars />
       
-      {/* Floating coins decoration */}
-      <FloatingCoin delay={0} size={50} className="top-[15%] left-[10%]" />
-      <FloatingCoin delay={0.5} size={35} className="top-[25%] right-[15%]" />
-      <FloatingCoin delay={1} size={45} className="bottom-[30%] left-[20%]" />
-      <FloatingCoin delay={1.5} size={30} className="top-[40%] right-[25%]" />
-      <FloatingCoin delay={2} size={40} className="bottom-[20%] right-[10%]" />
+      {/* Floating coins decoration - hidden on small screens */}
+      <FloatingCoin delay={0} size={50} className="hidden sm:block top-[15%] left-[10%]" />
+      <FloatingCoin delay={0.5} size={35} className="hidden sm:block top-[25%] right-[15%]" />
+      <FloatingCoin delay={1} size={45} className="hidden md:block bottom-[30%] left-[20%]" />
+      <FloatingCoin delay={1.5} size={30} className="hidden md:block top-[40%] right-[25%]" />
+      <FloatingCoin delay={2} size={40} className="hidden lg:block bottom-[20%] right-[10%]" />
       
-      <div className="container mx-auto px-4 z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-16 pt-16 sm:pt-0">
           {/* Text Content */}
           <motion.div 
             className="text-center lg:text-left max-w-2xl"
@@ -27,23 +27,23 @@ export function HeroSection() {
           >
             {/* Logo Image */}
             <motion.div
-              className="mb-6"
+              className="mb-4 sm:mb-6"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2022%20may%202026%2C%2003_57_47%20p.m-WYdmvKbNaeHe6PbLjUuw7InERjwr7B.png"
-                alt="Coin Catcher Logo"
-                width={400}
-                height={200}
-                className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-22%20at%205.36.54%20PM%20%281%29-NrGjMxvOnDrEAAAP8zePyeSJJ6vJ5Y.jpeg"
+                alt="Atrapamonedas Logo"
+                width={450}
+                height={350}
+                className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)] w-[280px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-auto"
                 priority
               />
             </motion.div>
             
             <motion.p 
-              className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -52,28 +52,28 @@ export function HeroSection() {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <a href="#demo" className="arcade-btn px-8 py-4 text-arcade-night text-sm md:text-base rounded-lg">
+              <a href="#demo" className="arcade-btn px-6 sm:px-8 py-3 sm:py-4 text-arcade-night text-xs sm:text-sm md:text-base rounded-lg text-center">
                 JUGAR DEMO
               </a>
-              <a href="#gameplay" className="px-8 py-4 bg-retro-purple border-2 border-coin-gold text-coin-gold text-sm md:text-base rounded-lg hover:bg-retro-purple/80 transition-colors">
+              <a href="#gameplay" className="px-6 sm:px-8 py-3 sm:py-4 bg-retro-purple border-2 border-coin-gold text-coin-gold text-xs sm:text-sm md:text-base rounded-lg hover:bg-retro-purple/80 transition-colors text-center">
                 VER GAMEPLAY
               </a>
             </motion.div>
           </motion.div>
           
-          {/* Key Art */}
+          {/* Key Art - hidden on mobile */}
           <motion.div 
-            className="relative"
+            className="relative hidden sm:block"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               {/* Glow background */}
               <div className="absolute inset-0 bg-gradient-radial from-coin-gold/20 via-transparent to-transparent rounded-full" />
               

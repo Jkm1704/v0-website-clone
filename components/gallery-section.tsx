@@ -60,23 +60,23 @@ export function GallerySection() {
     : galleryItems.filter(item => item.category === activeCategory)
   
   return (
-    <section id="gameplay" className="py-20 md:py-32 bg-arcade-blue relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="gameplay" className="py-12 sm:py-16 md:py-20 lg:py-32 bg-arcade-blue relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl md:text-4xl text-coin-gold mb-4">GALERÍA MULTIMEDIA</h2>
-          <p className="text-white/60 text-sm md:text-base">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-coin-gold mb-2 sm:mb-4">GALERIA MULTIMEDIA</h2>
+          <p className="text-white/60 text-xs sm:text-sm md:text-base">
             Capturas, arte conceptual y videos del juego
           </p>
         </motion.div>
         
         {/* Category filter */}
         <motion.div 
-          className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-4 mb-8 sm:mb-10 md:mb-12 px-2"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -85,7 +85,7 @@ export function GallerySection() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-lg text-xs transition-all ${
+              className={`px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-[10px] sm:text-xs transition-all ${
                 activeCategory === category
                   ? 'bg-coin-gold text-arcade-night'
                   : 'bg-arcade-night border border-coin-gold/50 text-coin-gold hover:border-coin-gold'
@@ -98,7 +98,7 @@ export function GallerySection() {
         
         {/* Gallery grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto"
           layout
         >
           <AnimatePresence mode="popLayout">
@@ -111,36 +111,36 @@ export function GallerySection() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setSelectedItem(item)}
-                className="glow-card rounded-xl overflow-hidden cursor-pointer group"
+                className="glow-card rounded-lg sm:rounded-xl overflow-hidden cursor-pointer group"
               >
                 <div className="aspect-video relative bg-arcade-night">
                   {/* Placeholder */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     {item.type === 'video' ? (
-                      <Play className="w-12 h-12 text-coin-gold/50" />
+                      <Play className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-coin-gold/50" />
                     ) : (
-                      <ImageIcon className="w-12 h-12 text-coin-gold/50" />
+                      <ImageIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-coin-gold/50" />
                     )}
-                    <span className="text-white/30 text-xs mt-2">{item.type.toUpperCase()}</span>
+                    <span className="text-white/30 text-[10px] sm:text-xs mt-1 sm:mt-2">{item.type.toUpperCase()}</span>
                   </div>
                   
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-coin-gold/0 group-hover:bg-coin-gold/10 transition-colors flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-12 h-12 bg-coin-gold rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-coin-gold rounded-full flex items-center justify-center">
                         {item.type === 'video' ? (
-                          <Play className="w-6 h-6 text-arcade-night ml-1" />
+                          <Play className="w-4 h-4 sm:w-6 sm:h-6 text-arcade-night ml-1" />
                         ) : (
-                          <ImageIcon className="w-6 h-6 text-arcade-night" />
+                          <ImageIcon className="w-4 h-4 sm:w-6 sm:h-6 text-arcade-night" />
                         )}
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-4">
-                  <span className="text-coin-orange text-xs">{item.category}</span>
-                  <h3 className="text-white text-sm mt-1">{item.title}</h3>
+                <div className="p-2 sm:p-3 md:p-4">
+                  <span className="text-coin-orange text-[10px] sm:text-xs">{item.category}</span>
+                  <h3 className="text-white text-xs sm:text-sm mt-0.5 sm:mt-1">{item.title}</h3>
                 </div>
               </motion.div>
             ))}
