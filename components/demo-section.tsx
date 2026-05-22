@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Gamepad2, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
 
 export function DemoSection() {
   return (
@@ -66,7 +66,7 @@ export function DemoSection() {
           </div>
         </motion.div>
         
-        {/* Demo container */}
+        {/* Demo container with embedded game */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -75,36 +75,21 @@ export function DemoSection() {
           className="max-w-4xl mx-auto"
         >
           <div className="glow-card rounded-2xl p-2 md:p-4">
-            {/* Demo placeholder / iframe container */}
-            <div className="relative aspect-video bg-arcade-night rounded-xl overflow-hidden border-4 border-retro-purple">
-              {/* Placeholder content - replace with actual game iframe */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Gamepad2 className="w-24 h-24 text-coin-gold/50 mb-6" />
-                </motion.div>
-                <p className="text-coin-gold text-lg mb-4">DEMO PRÓXIMAMENTE</p>
-                <p className="text-white/50 text-xs text-center px-4">
-                  Aquí se cargará el juego. Inserta el iframe o enlace al archivo HTML.
-                </p>
-                
-                {/* Uncomment and replace src to embed the game */}
-                {/* <iframe 
-                  src="/game/index.html" 
-                  className="absolute inset-0 w-full h-full border-0"
-                  title="Coin Catcher Demo"
-                /> */}
-              </div>
+            {/* Game iframe container */}
+            <div className="relative aspect-[4/3] bg-arcade-night rounded-xl overflow-hidden border-4 border-retro-purple">
+              <iframe 
+                src="/game.html" 
+                className="absolute inset-0 w-full h-full border-0"
+                title="Coin Catcher Demo"
+                allow="autoplay"
+              />
             </div>
           </div>
           
           <div className="text-center mt-8">
-            <button className="arcade-btn px-8 py-4 text-arcade-night text-sm rounded-lg">
-              <Gamepad2 className="inline-block w-5 h-5 mr-2" />
-              ABRIR DEMO
-            </button>
+            <p className="text-white/50 text-xs">
+              Haz clic en el juego para activar los controles. Usa las flechas o WASD para moverte.
+            </p>
           </div>
         </motion.div>
       </div>
