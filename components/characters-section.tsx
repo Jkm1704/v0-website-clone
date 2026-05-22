@@ -26,7 +26,7 @@ const characters = [
     description: 'Un enemigo lento pero persistente que persigue al jugador en los niveles más difíciles.',
     color: 'from-orange-500 to-orange-700',
     borderColor: 'border-orange-500',
-    Component: PixelSnail
+    image : 'https://i.postimg.cc/tT52tG3P/cute-little-snail-cartoon-character-vector.png'
   }
 ]
 
@@ -62,7 +62,7 @@ export function CharactersSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <character.Component />
+                <character. />
               </motion.div>
               
               <h3 className="text-xl text-coin-gold mb-2">{character.name}</h3>
