@@ -63,7 +63,7 @@ export function CharactersSection() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {character.name === 'Heroe' ? (
-                  <div 
+                  <div
                     className="w-[100px] h-[100px]"
                     style={{
                       backgroundImage: `url('${character.image}')`,
