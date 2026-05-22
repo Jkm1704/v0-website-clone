@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { FloatingCoin, PixelHero, PixelJellyfish, PixelSnail, ArcadeStars } from './game-elements'
 
 export function HeroSection() {
@@ -24,14 +25,22 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl text-coin-gold mb-6 leading-tight drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]"
+            {/* Logo Image */}
+            <motion.div
+              className="mb-6"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              COIN CATCHER
-            </motion.h1>
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2022%20may%202026%2C%2003_57_47%20p.m-WYdmvKbNaeHe6PbLjUuw7InERjwr7B.png"
+                alt="Coin Catcher Logo"
+                width={400}
+                height={200}
+                className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]"
+                priority
+              />
+            </motion.div>
             
             <motion.p 
               className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed"

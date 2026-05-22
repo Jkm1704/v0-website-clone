@@ -52,7 +52,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            © 2024 Coin Catcher. UNAD. Todos los derechos reservados.
+            © 2026 Coin Catcher. UNAD. Todos los derechos reservados.
           </motion.p>
         </div>
       </div>
