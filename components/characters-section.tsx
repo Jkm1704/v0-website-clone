@@ -62,14 +62,27 @@ export function CharactersSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Image
-                  src={character.image}
-                  alt={character.name}
-                  width={100}
-                  height={100}
-                  className="object-contain"
-                  unoptimized
-                />
+                {character.name === 'Heroe' ? (
+                  <div 
+                    className="w-[100px] h-[100px]"
+                    style={{
+                      backgroundImage: `url('${character.image}')`,
+                      backgroundSize: '400px 100px',
+                      backgroundPosition: '0 0',
+                      imageRendering: 'pixelated',
+                      filter: 'contrast(1.2) brightness(1.1)'
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src={character.image}
+                    alt={character.name}
+                    width={100}
+                    height={100}
+                    className="object-contain"
+                    unoptimized
+                  />
+                )}
               </motion.div>
 
               <h3 className="text-xl text-coin-gold mb-2">{character.name}</h3>
