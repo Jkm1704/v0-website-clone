@@ -40,7 +40,7 @@ export function Navbar() {
             <div className="relative w-8 h-8">
               <FloatingCoin size={32} className="relative" />
             </div>
-            <span className="text-coin-gold text-xs sm:text-sm md:text-base hidden xs:inline">ATRAPAMONEDAS</span>
+            <span className="text-coin-gold text-sm md:text-base hidden sm:inline">COIN CATCHER</span>
           </a>
           
           {/* Desktop nav */}

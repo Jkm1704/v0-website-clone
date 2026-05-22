@@ -6,22 +6,22 @@ import { FloatingCoin } from './game-elements'
 
 export function CreditsSection() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-b from-arcade-blue to-arcade-night relative overflow-hidden">
-      {/* Decorative coins - hidden on mobile */}
-      <FloatingCoin delay={0} size={30} className="hidden sm:block top-[20%] left-[5%]" />
-      <FloatingCoin delay={1} size={25} className="hidden sm:block top-[40%] right-[8%]" />
-      <FloatingCoin delay={2} size={35} className="hidden md:block bottom-[30%] left-[10%]" />
+    <section className="py-20 md:py-32 bg-gradient-to-b from-arcade-blue to-arcade-night relative overflow-hidden">
+      {/* Decorative coins */}
+      <FloatingCoin delay={0} size={30} className="top-[20%] left-[5%]" />
+      <FloatingCoin delay={1} size={25} className="top-[40%] right-[8%]" />
+      <FloatingCoin delay={2} size={35} className="bottom-[30%] left-[10%]" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-coin-gold mb-2 sm:mb-4">CREDITOS</h2>
-          <p className="text-white/60 text-xs sm:text-sm md:text-base">
-            El equipo detras de Coin Catcher
+          <h2 className="text-2xl md:text-4xl text-coin-gold mb-4">CRÉDITOS</h2>
+          <p className="text-white/60 text-sm md:text-base">
+            El equipo detrás de Coin Catcher
           </p>
         </motion.div>
 
