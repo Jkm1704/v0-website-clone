@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Image as ImageIcon, X } from 'lucide-react'
 
@@ -11,6 +11,7 @@ type GalleryItem = {
   category: string
   placeholder?: boolean
   image?: string
+  images?: string[]
   video?: string
 }
 
@@ -34,32 +35,56 @@ const galleryItems: GalleryItem[] = [
     type: 'image',
     title: 'Arte del Héroe',
     category: 'Arte',
-    placeholder: true,
+    image: '/heroe.jpeg',
   },
   {
     id: 4,
     type: 'image',
     title: 'Enemigos',
     category: 'Arte',
-    placeholder: true,
+    images: ['/1.jpeg', '/2.jpeg'],
   },
   {
     id: 5,
     type: 'gif',
-    title: 'Monedas Girando',
-    category: 'Animación',
-    placeholder: true,
+    title: 'Moneda',
+    category: 'Objetivo',
+    video: '/monedas.mp4',
   },
   {
     id: 6,
     type: 'video',
-    title: 'Video Gameplay',
-    category: 'Video',
-    placeholder: true,
+    title: 'Video trailer',
+    category: 'Trailer',
+    video: '/trailer.mp4',
   },
 ]
 
-const categories = ['Todos', 'UI', 'Gameplay', 'Arte', 'Animación', 'Video']
+const categories = ['Todos', 'UI', 'Gameplay', 'Arte', 'Objetivo', 'Trailer']
+
+function RotatingImages({ images, title }: { images: string[]; title: string }) {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length)
+    }, 2500)
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  return (
+    <motion.img
+      key={images[currentImage]}
+      src={images[currentImage]}
+      alt={title}
+      className="w-full h-full object-cover"
+      initial={{ opacity: 0, scale: 1.04 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.45 }}
+    />
+  )
+}
 
 export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState('Todos')
@@ -123,7 +148,9 @@ export function GallerySection() {
                 className="glow-card rounded-xl overflow-hidden cursor-pointer group"
               >
                 <div className="aspect-video relative bg-arcade-night overflow-hidden">
-                  {item.video ? (
+                  {item.images ? (
+                    <RotatingImages images={item.images} title={item.title} />
+                  ) : item.video ? (
                     <video
                       src={item.video}
                       className="w-full h-full object-cover"
@@ -199,7 +226,9 @@ export function GallerySection() {
 
               <div className="glow-card rounded-xl overflow-hidden">
                 <div className="aspect-video bg-arcade-night flex items-center justify-center overflow-hidden">
-                  {selectedItem.video ? (
+                  {selectedItem.images ? (
+                    <RotatingImages images={selectedItem.images} title={selectedItem.title} />
+                  ) : selectedItem.video ? (
                     <video
                       src={selectedItem.video}
                       className="w-full h-full object-cover"
