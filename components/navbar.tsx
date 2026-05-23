@@ -16,7 +16,7 @@ const navItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -24,14 +24,13 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-arcade-night/95 backdrop-blur-md border-b border-coin-gold/20' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-arcade-night/95 backdrop-blur-md border-b border-coin-gold/20' : 'bg-transparent'
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -40,9 +39,9 @@ export function Navbar() {
             <div className="relative w-8 h-8">
               <FloatingCoin size={32} className="relative" />
             </div>
-            <span className="text-coin-gold text-sm md:text-base hidden sm:inline">COIN CATCHER</span>
+            <span className="text-coin-gold text-sm md:text-base hidden sm:inline">ATRAPA MONEDAS</span>
           </a>
-          
+
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
@@ -58,7 +57,7 @@ export function Navbar() {
               JUGAR
             </a>
           </div>
-          
+
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -68,7 +67,7 @@ export function Navbar() {
           </button>
         </div>
       </div>
-      
+
       {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
