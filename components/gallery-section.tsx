@@ -7,10 +7,10 @@ import { Play, Image as ImageIcon, X } from 'lucide-react'
 const galleryItems = [
   {
     id: 1,
-    type: 'image',
-    title: 'Menú Principal',
-    category: 'UI',
-    placeholder: true
+    type: 'video',
+    title: 'Menu principal',
+    category: 'Menu',
+    video: '/videos/menuUi.mp4'
   },
   {
     id: 2,
@@ -54,15 +54,15 @@ const categories = ['Todos', 'UI', 'Gameplay', 'Arte', 'Animación', 'Video']
 export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState('Todos')
   const [selectedItem, setSelectedItem] = useState<typeof galleryItems[0] | null>(null)
-  
-  const filteredItems = activeCategory === 'Todos' 
-    ? galleryItems 
+
+  const filteredItems = activeCategory === 'Todos'
+    ? galleryItems
     : galleryItems.filter(item => item.category === activeCategory)
-  
+
   return (
     <section id="gameplay" className="py-20 md:py-32 bg-arcade-blue relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,9 +73,9 @@ export function GallerySection() {
             Capturas, arte conceptual y videos del juego
           </p>
         </motion.div>
-        
+
         {/* Category filter */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -85,19 +85,18 @@ export function GallerySection() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-lg text-xs transition-all ${
-                activeCategory === category
+              className={`px-4 py-2 rounded-lg text-xs transition-all ${activeCategory === category
                   ? 'bg-coin-gold text-arcade-night'
                   : 'bg-arcade-night border border-coin-gold/50 text-coin-gold hover:border-coin-gold'
-              }`}
+                }`}
             >
               {category}
             </button>
           ))}
         </motion.div>
-        
+
         {/* Gallery grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
           layout
         >
@@ -123,7 +122,7 @@ export function GallerySection() {
                     )}
                     <span className="text-white/30 text-xs mt-2">{item.type.toUpperCase()}</span>
                   </div>
-                  
+
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-coin-gold/0 group-hover:bg-coin-gold/10 transition-colors flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
@@ -137,7 +136,7 @@ export function GallerySection() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-4">
                   <span className="text-coin-orange text-xs">{item.category}</span>
                   <h3 className="text-white text-sm mt-1">{item.title}</h3>
@@ -147,7 +146,7 @@ export function GallerySection() {
           </AnimatePresence>
         </motion.div>
       </div>
-      
+
       {/* Lightbox */}
       <AnimatePresence>
         {selectedItem && (
@@ -171,7 +170,7 @@ export function GallerySection() {
               >
                 <X className="w-8 h-8" />
               </button>
-              
+
               <div className="glow-card rounded-xl overflow-hidden">
                 <div className="aspect-video bg-arcade-night flex items-center justify-center">
                   {selectedItem.type === 'video' ? (
