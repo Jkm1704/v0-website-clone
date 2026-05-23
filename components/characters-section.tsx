@@ -13,7 +13,7 @@ const characters = [
     image: 'https://i.postimg.cc/C5X9yVzD/1447ed634-3d4f-4ef8-bfa6-483957d68d4d.png'
   },
   {
-    name: 'Medusas',
+    name: 'Medusa',
     role: 'Enemigo Flotante',
     description: 'Una criatura flotante que se mueve por el mapa y dificulta el camino del jugador.',
     color: 'from-purple-500 to-purple-700',
