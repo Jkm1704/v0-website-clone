@@ -22,7 +22,7 @@ export function Footer() {
             <div className="relative w-8 h-8">
               <FloatingCoin size={32} className="relative" />
             </div>
-            <span className="text-coin-gold text-sm">COIN CATCHER</span>
+            <span className="text-coin-gold text-sm">ATRAPA MONEDAS</span>
           </motion.div>
           
           {/* Links */}
