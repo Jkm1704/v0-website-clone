@@ -37,7 +37,7 @@ export function HeroSection() {
                 alt="Coin Catcher Logo"
                 width={400}
                 height={200}
-                className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]"
+                className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)] animate-float"
                 priority
               />
             </motion.div>
