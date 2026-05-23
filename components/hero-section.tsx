@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FloatingCoin, PixelHero, PixelJellyfish, PixelSnail, ArcadeStars } from './game-elements'
+import { FloatingCoin, ArcadeStars } from './game-elements'
 
 export function HeroSection() {
   return (
@@ -34,7 +34,7 @@ export function HeroSection() {
             >
               <Image
                 src="/logo.png"
-                alt="Coin Catcher Logo"
+                alt="Atrapamonedas Logo"
                 width={400}
                 height={200}
                 className="mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,215,0,0.5)] animate-float"
@@ -66,51 +66,23 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Key Art */}
+          {/* Trailer Video */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              {/* Glow background */}
-              <div className="absolute inset-0 bg-gradient-radial from-coin-gold/20 via-transparent to-transparent rounded-full" />
-
-              {/* Hero character */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <PixelHero />
-              </motion.div>
-
-              {/* Jellyfish */}
-              <motion.div
-                className="absolute top-[10%] right-[10%]"
-                animate={{
-                  x: [0, 20, 0],
-                  y: [0, -10, 0]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <PixelJellyfish />
-              </motion.div>
-
-              {/* Snail */}
-              <motion.div
-                className="absolute bottom-[15%] left-[5%]"
-                animate={{ x: [0, 30, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <PixelSnail />
-              </motion.div>
-
-              {/* Floating coins around characters */}
-              <FloatingCoin delay={0} size={30} className="top-[20%] left-[15%]" />
-              <FloatingCoin delay={0.7} size={25} className="bottom-[25%] right-[20%]" />
-              <FloatingCoin delay={1.4} size={28} className="top-[45%] right-[5%]" />
+            <div className="relative w-72 md:w-[480px] aspect-video rounded-2xl overflow-hidden border-4 border-coin-gold shadow-[0_0_40px_rgba(255,215,0,0.45)] bg-arcade-night">
+              <video
+                src="/trailer.mp4"
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+              />
             </div>
           </motion.div>
         </div>
