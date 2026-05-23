@@ -24,10 +24,10 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: 2,
-    type: 'image',
+    type: 'video',
     title: 'Gameplay Nivel 1',
     category: 'Gameplay',
-    placeholder: true,
+    video: '/nivel1.mp4',
   },
   {
     id: 3,
