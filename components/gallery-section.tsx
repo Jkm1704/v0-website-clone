@@ -4,60 +4,71 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Image as ImageIcon, X } from 'lucide-react'
 
-const galleryItems = [
+type GalleryItem = {
+  id: number
+  type: 'image' | 'video' | 'gif'
+  title: string
+  category: string
+  placeholder?: boolean
+  image?: string
+  video?: string
+}
+
+const galleryItems: GalleryItem[] = [
   {
     id: 1,
     type: 'video',
-    title: 'Menu principal',
-    category: 'Menu',
-    video: '/videos/menuUi.mp4'
+    title: 'Menú Principal',
+    category: 'UI',
+    video: '/menuUi.mp4',
   },
   {
     id: 2,
     type: 'image',
     title: 'Gameplay Nivel 1',
     category: 'Gameplay',
-    placeholder: true
+    placeholder: true,
   },
   {
     id: 3,
     type: 'image',
     title: 'Arte del Héroe',
     category: 'Arte',
-    placeholder: true
+    placeholder: true,
   },
   {
     id: 4,
     type: 'image',
     title: 'Enemigos',
     category: 'Arte',
-    placeholder: true
+    placeholder: true,
   },
   {
     id: 5,
     type: 'gif',
     title: 'Monedas Girando',
     category: 'Animación',
-    placeholder: true
+    placeholder: true,
   },
   {
     id: 6,
     type: 'video',
     title: 'Video Gameplay',
     category: 'Video',
-    placeholder: true
-  }
+    placeholder: true,
+  },
 ]
 
 const categories = ['Todos', 'UI', 'Gameplay', 'Arte', 'Animación', 'Video']
 
 export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState('Todos')
-  const [selectedItem, setSelectedItem] = useState<typeof galleryItems[0] | null>(null)
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
 
-  const filteredItems = activeCategory === 'Todos'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory)
+  const filteredItems =
+    activeCategory === 'Todos'
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory)
 
   return (
     <section id="gameplay" className="py-20 md:py-32 bg-arcade-blue relative overflow-hidden">
@@ -74,7 +85,6 @@ export function GallerySection() {
           </p>
         </motion.div>
 
-        {/* Category filter */}
         <motion.div
           className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12"
           initial={{ opacity: 0 }}
@@ -85,17 +95,17 @@ export function GallerySection() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-lg text-xs transition-all ${activeCategory === category
+              className={`px-4 py-2 rounded-lg text-xs transition-all ${
+                activeCategory === category
                   ? 'bg-coin-gold text-arcade-night'
                   : 'bg-arcade-night border border-coin-gold/50 text-coin-gold hover:border-coin-gold'
-                }`}
+              }`}
             >
               {category}
             </button>
           ))}
         </motion.div>
 
-        {/* Gallery grid */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
           layout
@@ -112,18 +122,35 @@ export function GallerySection() {
                 onClick={() => setSelectedItem(item)}
                 className="glow-card rounded-xl overflow-hidden cursor-pointer group"
               >
-                <div className="aspect-video relative bg-arcade-night">
-                  {/* Placeholder */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    {item.type === 'video' ? (
-                      <Play className="w-12 h-12 text-coin-gold/50" />
-                    ) : (
-                      <ImageIcon className="w-12 h-12 text-coin-gold/50" />
-                    )}
-                    <span className="text-white/30 text-xs mt-2">{item.type.toUpperCase()}</span>
-                  </div>
+                <div className="aspect-video relative bg-arcade-night overflow-hidden">
+                  {item.video ? (
+                    <video
+                      src={item.video}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      autoPlay
+                    />
+                  ) : item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      {item.type === 'video' ? (
+                        <Play className="w-12 h-12 text-coin-gold/50" />
+                      ) : (
+                        <ImageIcon className="w-12 h-12 text-coin-gold/50" />
+                      )}
+                      <span className="text-white/30 text-xs mt-2">
+                        {item.type.toUpperCase()}
+                      </span>
+                    </div>
+                  )}
 
-                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-coin-gold/0 group-hover:bg-coin-gold/10 transition-colors flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="w-12 h-12 bg-coin-gold rounded-full flex items-center justify-center">
@@ -147,7 +174,6 @@ export function GallerySection() {
         </motion.div>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
@@ -161,7 +187,7 @@ export function GallerySection() {
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
-              onClick={e => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
               className="relative max-w-4xl w-full"
             >
               <button
@@ -172,13 +198,27 @@ export function GallerySection() {
               </button>
 
               <div className="glow-card rounded-xl overflow-hidden">
-                <div className="aspect-video bg-arcade-night flex items-center justify-center">
-                  {selectedItem.type === 'video' ? (
+                <div className="aspect-video bg-arcade-night flex items-center justify-center overflow-hidden">
+                  {selectedItem.video ? (
+                    <video
+                      src={selectedItem.video}
+                      className="w-full h-full object-cover"
+                      controls
+                      autoPlay
+                    />
+                  ) : selectedItem.image ? (
+                    <img
+                      src={selectedItem.image}
+                      alt={selectedItem.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : selectedItem.type === 'video' ? (
                     <Play className="w-24 h-24 text-coin-gold/50" />
                   ) : (
                     <ImageIcon className="w-24 h-24 text-coin-gold/50" />
                   )}
                 </div>
+
                 <div className="p-6">
                   <span className="text-coin-orange text-xs">{selectedItem.category}</span>
                   <h3 className="text-coin-gold text-lg mt-2">{selectedItem.title}</h3>
